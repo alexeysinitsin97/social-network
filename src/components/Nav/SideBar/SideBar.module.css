@@ -1,0 +1,28 @@
+.friend__title {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.content {
+    width: 100%;
+}
+
+.friends {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    background-color: burlywood;
+
+
+}
