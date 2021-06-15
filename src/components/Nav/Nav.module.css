@@ -1,14 +1,15 @@
 .nav{
   grid-area: n;
-  background-color:yellowgreen;
+  background-color:#99c0a7;
   padding: 10px;
+  color: #c9c9c9;
 }
 .item{
   padding-bottom: 10px;
 }
 .nav a:hover{
-  color: rgb(245, 214, 135);
+  color: rgba(245, 233, 0, 14.2);
 }
 .item .active{
-  color: rgb(236, 60, 60);
+  color: rgb(161, 51, 51);
 }

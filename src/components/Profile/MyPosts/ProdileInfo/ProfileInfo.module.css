@@ -1,3 +1,17 @@
 .fon {
   width: 100%;
 }
+.profile{
+  padding: 20px;
+}
+.profile__photo{
+  border-radius: 30px;
+  margin-right: 100px;
+}
+.profile__content{
+  display: flex;
+
+}
+.contacts{
+  padding-left: 20px;
+}

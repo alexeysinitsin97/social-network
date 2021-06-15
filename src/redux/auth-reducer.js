@@ -1,14 +1,19 @@
 import { stopSubmit } from "redux-form";
 import authApi from "../components/Api/authApi";
 const SET_USER_DATA = "SET_USER_DATA";
+const SET_CAPTCHA_URL = "SET_CAPTCHA_URL";
 let initialState = {
   login: null,
   email: null,
   userId: null,
   isAuth: false,
+  captcha: null,
 };
 export const setUserAuthAC = (login, email, userId, isAuth) => {
   return { type: SET_USER_DATA, data: { login, email, userId, isAuth } };
+};
+export const setCaptchaUrl = (url) => {
+  return { type: SET_CAPTCHA_URL, url };
 };
 
 const authReducer = (state = initialState, action) => {
@@ -17,6 +22,11 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         ...action.data,
+      };
+    case SET_CAPTCHA_URL:
+      return {
+        ...state,
+        captcha: action.url,
       };
 
     default:
@@ -38,17 +48,21 @@ export const authMe = () => (dispatch) => {
   });
 };
 
-export const login = (email, password, rememberMe) => {
+export const login = (email, password, rememberMe, captcha) => {
   return (dispatch) => {
-    authApi.login(email, password, rememberMe).then((data) => {
+    authApi.login(email, password, rememberMe, captcha).then((data) => {
       if (data.data.resultCode === 0) {
         debugger;
         dispatch(authMe());
       } else {
-        console.log(data);
+        if (data.data.resultCode === 10) {
+          debugger;
+          dispatch(getCaptchaUrl());
+        }
         let messages = data.data.messages.length
           ? data.data.messages
           : "Some Error";
+
         dispatch(stopSubmit("login", { _error: messages }));
       }
     });
@@ -71,6 +85,13 @@ export const logout = () => {
         dispatch(setUserAuthAC(null, null, null, false));
       }
     });
+  };
+};
+export const getCaptchaUrl = () => {
+  return async (dispatch) => {
+    let res = await authApi.getCaptcha();
+    console.log(res.data.url);
+    dispatch(setCaptchaUrl(res.data.url));
   };
 };
 export default authReducer;

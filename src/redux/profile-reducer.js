@@ -26,7 +26,6 @@ export const setProfile = (profile) => {
 };
 
 export const setProfileStatus = (status) => {
- 
   return {
     type: SET_PROFILE_STATUS,
     status,
@@ -36,7 +35,7 @@ export const setPhoto = (file) => {
   debugger;
   return {
     type: SET_PHOTO_SUCSSES,
-    file
+    file,
   };
 };
 const profileReducer = (state = initialState, action) => {
@@ -44,7 +43,7 @@ const profileReducer = (state = initialState, action) => {
     case SET_PHOTO_SUCSSES: {
       return {
         ...state,
-        profile:{...state.profile, photos:action.file}
+        profile: { ...state.profile, photos: action.file },
       };
     }
     case ADD_POST: {
@@ -87,9 +86,10 @@ export const setUserProfile = (userId) => {
 export const savePhoto = (file) => {
   return (dispatch) => {
     ProfileApi.savePhoto(file).then((data) => {
-    if(data.resultCode ===0){
-      dispatch(setPhoto(data.data.photos));
-    }});
+      if (data.resultCode === 0) {
+        dispatch(setPhoto(data.data.photos));
+      }
+    });
   };
 };
 export const getUserProfileStatus = (userId) => {
@@ -109,4 +109,13 @@ export const updateProfileStatus = (status) => {
   };
 };
 
+export const saveProfile = (formData, userId) => {
+  return (dispatch) => {
+    ProfileApi.saveProfileData(formData).then((data) => {
+      if (data.resultCode === 0) {
+        dispatch(setUserProfile(userId));
+      }
+    });
+  };
+};
 export default profileReducer;

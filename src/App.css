@@ -12,6 +12,8 @@
 }
 .app-wrapper-content{
   grid-area: c;
-  background-color: burlywood;
+  /* background-color: #93a8b0; */
+  /* background-color:rgb(183, 185, 108); */
+  background-color: #d2afae;
   max-width: 1200px;
 }

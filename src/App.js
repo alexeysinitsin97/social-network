@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, HashRouter, Route } from "react-router-dom";
+import { BrowserRouter, HashRouter, Redirect, Route, Switch } from "react-router-dom";
 import "./App.css";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Nav from "./components/Nav/Nav";
@@ -23,11 +23,13 @@ class App extends React.Component {
     if (!this.props.initialized) return <Preloader />;
 
     return (
-      <HashRouter>
+      <BrowserRouter>
         <div className="app-wrapper">
           <HeaderContainer />
-          <Nav />
+          <Nav/>
           <div className="app-wrapper-content">
+         
+            <Redirect from="/" to="/Profile"/>
             <Route
               path="/Dialogs"
               render={() => (
@@ -42,9 +44,10 @@ class App extends React.Component {
             />
             <Route path="/Users" render={() => <UsersContainer />} />
             <Route path="/Login" render={() => <Login />} />
+         
           </div>
         </div>
-      </HashRouter>
+      </BrowserRouter>
     );
   }
 }

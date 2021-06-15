@@ -18,7 +18,14 @@ class HeaderContainer extends React.Component {
 let mapStateToProps = (state) => {
   return {
     isAuth:state.auth.isAuth,
-    login:state.auth.login
+    login:state.auth.login,
+    photos: state
   };
 };
+const obj = { width: 10, height: 15 };
+// Why is this NaN? Spelling is hard!
+const area = obj.width * obj.heigth;
+console.log(obj.width);
+console.log(obj.heigth);
+console.log(area);
 export default connect(mapStateToProps, {setUserAuthAC, authMe, logout})(HeaderContainer);

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+
 let ProfileStatusWithHooks = (props) => {
   let [editMode, setEditMode] = useState(false);
   let [status, setStatus] = useState(props.status);
@@ -28,6 +29,7 @@ let ProfileStatusWithHooks = (props) => {
         />
       ) : (
         <span onDoubleClick={activetedEdit}>
+        <b>Status: </b>
           {props.status || "empty status"}
         </span>
       )}

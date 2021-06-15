@@ -4,10 +4,12 @@
 }
 .header{
   grid-area: h;
-  background-color:green;
+  background-color:#c6d6b0;
+  background-color:#848c57;
   display: flex;
   justify-content: space-between;
   padding-left: 20px;
   padding-right: 20px;
   align-items: center;
+  color: #c9c9c9;
 }
